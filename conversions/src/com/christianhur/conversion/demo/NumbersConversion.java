@@ -23,28 +23,9 @@ public class NumbersConversion {
 		byte 	b = 1;  	//  1 byte		[00000000]
 				
 		p( (int)sum(s,s,s) );
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		{d = d+f+l+i+c+s+b;}
+
 	}
 	static void p(Object obj) {
 		System.out.println(obj.toString());
 	}
 }
-
-
-
-
-
-
-
