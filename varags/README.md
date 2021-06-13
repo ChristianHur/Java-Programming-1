@@ -76,3 +76,8 @@ Note:  Dos and Don'ts are not Can'ts.  While you can do them, it is not recommen
 	   static <T> T doSomething(T ... t){
           return t;  //creates heap pollution
        }
+       
+## Watch the video here
+Video:  [Replacing Overloaded Methods with a Single Varags Method](https://youtu.be/GuE-du8zXRQ)
+
+Direct Link:  https://youtu.be/GuE-du8zXRQ
