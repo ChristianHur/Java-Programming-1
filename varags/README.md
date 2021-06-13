@@ -25,6 +25,7 @@ A varags parameter is bounded by the following rules.
 
     type ... parameter
 **Examples**
+
 Simple print method
 
     static void print(int ... n){
