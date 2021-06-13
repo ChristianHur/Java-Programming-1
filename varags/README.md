@@ -1,8 +1,8 @@
 
 # What are Varags
 Following are characteristics of varags.
- - Varags is the short name for “variable arguments”. V
- - arags operator is an ellipsis or a set of three consecutive dots or periods:  … (no
+ - Varags is the short name for “variable arguments”.
+ - Varags operator is an ellipsis or a set of three consecutive dots or periods:  … (no
    spaces in between) 
  - Varags operator in Java is similar to the *args
    (non-keyword arguments) in Python, spread operator (...) in
