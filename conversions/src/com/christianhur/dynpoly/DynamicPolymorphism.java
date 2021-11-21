@@ -4,15 +4,15 @@ import java.util.Scanner;
 
 public class DynamicPolymorphism {
 	static Scanner input = new Scanner(System.in);
-	static final int INDEX_EMP	= 0;
-	static final int INDEX_MGR 	= 1;
-	static final int INDEX_CLI 	= 2;
+	static final int INDEX_EMP = 0;
+	static final int INDEX_MGR = 1;
+	static final int INDEX_CLI = 2;
 	static final String E = "employee";
 	static final String M = "manager";
 	static final String C = "client";
-	static int 	employeeCount	= 0; 
-	static int 	managerCount	= 0; 
-	static int 	clientCount		= 0;
+	static int employeeCount = 0; 
+	static int managerCount	= 0; 
+	static int clientCount	= 0;
 	static final int MAX_EMP = getMaxPersonType(E);
 	static final int MAX_MGR = getMaxPersonType(M);
 	static final int MAX_CLI = getMaxPersonType(C);
