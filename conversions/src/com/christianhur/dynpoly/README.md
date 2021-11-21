@@ -4,7 +4,7 @@ This is an example of dynamic polymorphism and (widening), inheritance, class ty
 
 ## Class Information
 
-         Person
+         Person                  Helper (Set of helper functions)
          /   \
         /     \
     Client   Employee
