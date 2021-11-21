@@ -3,70 +3,104 @@ package com.christianhur.dynpoly;
 import java.util.Scanner;
 
 public class DynamicPolymorphism {
-	static final int MAX_EMP = 3;
-	static final int MAX_MGR = 2;
-	static final int MAX_CLI = 3;
-	static final String PERSON_TYPE_EMP = "Employee";
-	static final String PERSON_TYPE_MGR = "Manager";
-	static final String PERSON_TYPE_CLI = "Client";
 	static Scanner input = new Scanner(System.in);
-
+	static final int INDEX_EMP	= 0;
+	static final int INDEX_MGR 	= 1;
+	static final int INDEX_CLI 	= 2;
+	static final String E = "employee";
+	static final String M = "manager";
+	static final String C = "client";
+	static int 	employeeCount	= 0; 
+	static int 	managerCount	= 0; 
+	static int 	clientCount		= 0;
+	static final int MAX_EMP = getMaxPersonType(E);
+	static final int MAX_MGR = getMaxPersonType(M);
+	static final int MAX_CLI = getMaxPersonType(C);
+		
 	public static void main(String[] args) {
-		Employee[] employees = new Employee[MAX_EMP];
-		Manager[] managers = new Manager[MAX_MGR];
-		Client[] clients = new Client[MAX_CLI];
-
-		int e = 0, m = 0, c = 0;
-		boolean quit = false;
-		do {
+						
+		Person[][] personList = new Person[][] { new Employee[MAX_EMP], new Manager[MAX_MGR], new Client[MAX_CLI] };
+		
+		while (true) {
 			Helper.displayMenu();
 			char choice = Helper.getSelection();
 			switch (choice) {
-			case 'E':
-				if (e < MAX_EMP) {
-					System.out.printf("\n\t:::Enter Employee #%d Data:::\n\n", e + 1);
-					employees[e] = new Employee();
-					enterEmployeeData(employees[e++]);
-				} else {
-					System.out.printf("\n\t*** No more employees to add.");
-				}
-				break;
-			case 'M':
-				if (m < MAX_MGR) {
-					System.out.printf("\n\t:::Enter Manager #%d Data:::\n\n", e + 1);
-					managers[m] = new Manager();
-					enterManagerData(managers[m++]);
-				} else {
-					System.out.printf("\n\t*** No more managers to add.");
-				}
-				break;
-			case 'C':
-				if (c < MAX_CLI) {
-					System.out.printf("\n\t:::Enter Client #%d Data:::\n\n", c + 1);
-					clients[c] = new Client();
-					enterClientData(clients[c++]);
-				} else {
-					System.out.printf("\n\t*** No more clients to add.");
-				}
-				break;
-			case 'Q':
-				quit = true;
-				break;
-			default:
-				System.out.println("\n\t*** Invalid selection.  Try again.");
-				break;
+				case 'E':
+					processEmployee((Employee[]) personList[INDEX_EMP], employeeCount++);
+					break;
+				case 'M':
+					processManager((Manager[]) personList[INDEX_MGR], managerCount++);
+					break;
+				case 'C':
+					processClient((Client[]) personList[INDEX_CLI], clientCount++);
+					break;
+				case 'Q':
+					break;
+				default:
+					System.out.println("\n\t*** Invalid selection.  Try again.");
+					break;
 			}
-			if (!quit) {
-				quit = Helper.doContinue();
-			}
-		} while (!quit);
-
+			if (choice == 'Q' || !Helper.doContinue())
+				break;
+		}
 		input.close();
-		Helper.printDetails(employees, PERSON_TYPE_EMP);
-		Helper.printDetails(managers, PERSON_TYPE_MGR);
-		Helper.printDetails(clients, PERSON_TYPE_CLI);
+		
+		// Print list only if not empty
+		for(Person[] persons : personList)
+			for(Person person : persons)
+				if(person != null) {
+					Helper.printDetails(personList);
+					break;
+			}
+		
+		goodBye();
+		
+	}
 
-		System.out.println("\n\t*** Thank you for playing.  Goody-bye. ***");
+	private static int getMaxPersonType(String type) {		
+		try {
+			System.out.printf("How many %s? >>", type);			
+			return Integer.parseInt(input.nextLine());
+		} catch (NumberFormatException e) {
+			System.out.println("\t*** Invalid input.  Must be integer.  Try again");
+		}
+		return getMaxPersonType(type);
+	}
+
+	private static void goodBye() {		
+		System.out.println("\n\t*****************************************");		
+		System.out.println("\n\t*** Thank you for playing.  Good-bye. ***");		
+		System.out.println("\n\t*****************************************");		
+	}
+
+	private static void processClient(Client[] clients, int i) {
+		if (i < MAX_CLI) {
+			System.out.printf("\n\t:::Enter Client #%d Data:::\n\n", i + 1);
+			clients[i] = new Client();
+			enterClientData(clients[i]);
+		} else {
+			System.out.printf("\n\t*** No more clients to add.");
+		}		
+	}
+
+	private static void processManager(Manager[] managers, int i) {
+		if (i < MAX_MGR) {
+			System.out.printf("\n\t:::Enter Manager #%d Data:::\n\n", i + 1);
+			managers[i] = new Manager();
+			enterManagerData(managers[i]);
+		} else {
+			System.out.printf("\n\t*** No more managers to add.");
+		}
+	}
+
+	private static void processEmployee(Employee[] employees, int i) {
+		if (i < MAX_EMP) {
+			System.out.printf("\n\t:::Enter Employee #%d Data:::\n\n", i + 1);
+			employees[i] = new Employee();
+			enterEmployeeData(employees[i]);
+		} else {
+			System.out.printf("\n\t*** No more employees to add.");
+		}		
 	}
 
 	public static void enterPersonData(Person person) {
@@ -74,51 +108,22 @@ public class DynamicPolymorphism {
 		person.setLastName(Helper.getString("Last Name"));
 		person.setEmail(Helper.getString("Email"));
 	}
-
-	
-	public static void enterData(Employee e, Manager m, Client c) {
-		if(e != null) {
-			e.setFirstName(Helper.getString("First Name"));
-			e.setLastName(Helper.getString("Last Name"));
-			e.setEmail(Helper.getString("Email"));
-		}else if(m != null) {
-			m.setFirstName(Helper.getString("First Name"));
-			m.setLastName(Helper.getString("Last Name"));
-			m.setEmail(Helper.getString("Email"));
-		}else {
-			c.setFirstName(Helper.getString("First Name"));
-			c.setLastName(Helper.getString("Last Name"));
-			c.setEmail(Helper.getString("Email"));
-		}
-	}
 	
 	public static void enterEmployeeData(Employee employee) {
-//		employee.setFirstName(Helper.getString("First Name"));
-//		employee.setLastName(Helper.getString("Last Name"));
-//		employee.setEmail(Helper.getString("Email"));
 		enterPersonData(employee);
 		employee.setTitle(Helper.getString("Title"));
 		employee.setDepartment(Helper.getString("Department"));
 		employee.setSalary(Helper.getDouble("Salary"));	
 	}
 
-	public static void enterManagerData(Manager manager) {
-//		manager.setFirstName(Helper.getString("First Name"));
-//		manager.setLastName(Helper.getString("Last Name"));
-//		manager.setEmail(Helper.getString("Email"));
-//		manager.setTitle(Helper.getString("Title"));
-//		manager.setDepartment(Helper.getString("Department"));
-//		manager.setSalary(Helper.getDouble("Salary"));		
-		enterEmployeeData(manager);
-		manager.setBonus(Helper.getDouble("Bonus"));
-	}
-
 	public static void enterClientData(Client client) {
-//		client.setFirstName(Helper.getString("First Name"));
-//		client.setLastName(Helper.getString("Last Name"));
-//		client.setEmail(Helper.getString("Email"));
 		enterPersonData(client);
 		client.setProject(Helper.getString("Project Title"));
 		client.setBudget(Helper.getDouble("Budget"));
+	}
+
+	public static void enterManagerData(Manager manager) {
+		enterEmployeeData(manager);
+		manager.setBonus(Helper.getDouble("Bonus"));
 	}
 }
