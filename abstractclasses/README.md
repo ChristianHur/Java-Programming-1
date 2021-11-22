@@ -3,6 +3,16 @@ Create an abstract **Student** class for Acme University. The class contains fie
 
 Write an application that reads a CSV file and creates an **ArrayList** of objects to demonstrate how the methods work for objects for each Student type. Finally, print each student information to the console.
 
+## File Information
+|        File        |Relationship|Description
+|----------------|-------------------------------|-----------------------------|
+|Student.java||Abstract Superclass
+|GraduateStudent.java|Child class of Student |Inherits the Student class
+|UnderGraduate.java|Child class of Student |Inherits the Student class
+|HighSchoolStudent.java|Child class of Student |Inherits the Student class
+|StudentProgram.java|| Driver program
+|student.csv||Student data file
+
 ## Text File: student.csv
 Student data are stored in the *student.csv* file (attached). The CSV file contains four fields: student id, first name, last name, type. Make sure that your text file is saved into the root directory of your Java project -- the same level as the "src" folder.
 
