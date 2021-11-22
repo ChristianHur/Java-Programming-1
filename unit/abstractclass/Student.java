@@ -1,5 +1,3 @@
-package com.christianhur.inheritance;
-
 public abstract class Student {
 	
 	private int sid;
