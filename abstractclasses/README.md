@@ -17,14 +17,14 @@ Write an application that reads a CSV file and creates an **ArrayList** of objec
 Student data are stored in the *student.csv* file (attached). The CSV file contains four fields: student id, first name, last name, type. Make sure that your text file is saved into the root directory of your Java project -- the same level as the "src" folder.
 
 ## Reading Textfile:
-Here's one way to open and read a text file using the Scanner class. With each line of text (record), you can use String methods to manipulate it (e.g. split()).
-
-    File file = new File("data.txt");
-    Scanner input = new Scanner(file);
-    while (input.hasNextLine()) {
-      String line = input.nextLine();
-    }
-
+Here's one way to open and read a text file using the `Scanner` class. With each line of text (record), you can use String methods to manipulate it (e.g. `split()`).
+```java
+File file = new File("data.txt");
+Scanner input = new Scanner(file);
+while (input.hasNextLine()) {
+  String line = input.nextLine();
+}
+```
 ## Sample Output:
     =================================================================
     SID       First          Last           Type             Tuition
