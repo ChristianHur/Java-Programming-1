@@ -1,5 +1,3 @@
-package com.christianhur.inheritance;
-
 public class GraduateStudent extends Student {
 	private int cost = 15_000;
 	private String level = "Graduate";
