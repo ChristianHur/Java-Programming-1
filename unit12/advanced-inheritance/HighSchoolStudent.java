@@ -1,3 +1,6 @@
+/**
+ * Child class of Student
+*/
 public class HighSchoolStudent extends Student {
 	private int cost = 5_500;
 	private String level = "High School";
