@@ -1,4 +1,3 @@
-package com.christianhur.inheritance;
 /* Driver program 
  * @author Christian Hur (Gateway Technical College)
  * Copyright: 2021
