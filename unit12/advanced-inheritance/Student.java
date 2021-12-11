@@ -1,5 +1,3 @@
-package com.christianhur.inheritance;
-
 /**
  * Abstract parent class
  */
