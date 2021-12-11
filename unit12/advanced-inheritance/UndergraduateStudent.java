@@ -1,5 +1,3 @@
-package com.christianhur.inheritance;
-
 /**
  * Child class of Student
  */
